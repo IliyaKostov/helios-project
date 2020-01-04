@@ -8,6 +8,8 @@ public class TalentButton : MonoBehaviour
     public Text amountText;
     public int valueAmount;
 
+    public Talent selectedTalent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,16 @@ public class TalentButton : MonoBehaviour
 
     public void Press()
     {
-        valueAmount += 1;
-        amountText.text = "" + valueAmount;
+        if (TalentPoints.instance.pointsToSpend > 0)
+        {
+            valueAmount += 1;
+            amountText.text = "" + valueAmount;
+            selectedTalent.SpendTalentPoint();
+            TalentPoints.instance.pointsToSpend--;
+        } else
+        {
+            return;
+        }
+        
     }
 }

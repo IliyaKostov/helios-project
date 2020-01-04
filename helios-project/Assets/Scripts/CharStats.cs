@@ -66,6 +66,7 @@ public class CharStats : MonoBehaviour
             {
                 currentExp -= expToNextLevel[playerLevel];
                 playerLevel++;
+                TalentPoints.instance.pointsToSpend++;
 
                 // determine to add str, def based on odd or even
                 if (playerLevel % 2 == 0)
