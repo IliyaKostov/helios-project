@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
     public float defendTime;
     private float defendTimeCounter;
 
-    public bool casting;
-    public float castTime;
-    private float castTimeCounter;
+    //public bool casting;
+    //public float castTime;
+    //private float castTimeCounter;
 
     public bool rolling;
     public float rollTime;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (!attacking && !defending && !rolling && !casting) 
+        if (!attacking && !defending && !rolling && !MagicController.instance.casting) 
         {
             if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {
@@ -103,13 +103,13 @@ public class PlayerController : MonoBehaviour
                 myAnimator.SetBool("defending", true);
             }
 
-            if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown("joystick button 3"))
+            /*if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown("joystick button 3"))
             {
                 castTimeCounter = castTime;
                 casting = true;
                 myRigidbody.velocity = Vector2.zero;
                 myAnimator.SetBool("casting", true);
-            }
+            }*/
 
 
             if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown("joystick button 1") || rolling)
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetBool("rolling", false);
         }
 
-        if (castTimeCounter > 0)
+        /*if (castTimeCounter > 0)
         {
             castTimeCounter -= Time.deltaTime;
             if (castTimeCounter < 0.1)
@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour
         {
             casting = false;
             myAnimator.SetBool("casting", false);
-        }
+        }*/
 
 
         myAnimator.SetFloat("moveX", Input.GetAxisRaw("Horizontal"));
@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetFloat("lastMoveY", lastMove.y);
     }
 
-    void MoveCharacter()
+    /*void MoveCharacter()
     // Used in the commended out version
     {
         if (Mathf.Abs(change.x) > 0.5f && Mathf.Abs(change.y) > 0.5f)
@@ -206,6 +206,6 @@ public class PlayerController : MonoBehaviour
         myRigidbody.MovePosition(
             transform.position + change * currentMoveSpeed * Time.deltaTime
         );
-    }
+    }*/
 
 }

@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Slider healthBar;
+    public Slider manaBar;
     public Text HPText;
+    public Text MPText;
     public PlayerHealthManager playerHealth;
 
     //private PlayerStats thePS;
@@ -38,9 +40,12 @@ public class UIManager : MonoBehaviour
 
         healthBar.maxValue = CharStats.instance.maxHP;
         healthBar.value = CharStats.instance.currentHP;
+
+        manaBar.maxValue = CharStats.instance.maxMP;
+        manaBar.value = CharStats.instance.currentMP;
         //HPText.text = "HP: " + playerHealth.currentHealth + "/" + playerHealth.maxHealth;
         HPText.text = "HP: " + CharStats.instance.currentHP + "/" + CharStats.instance.maxHP;
-
+        MPText.text = "MP: " + CharStats.instance.currentMP + "/" + CharStats.instance.maxMP;
         //LevelText.text = "Lvl: " + thePS.currentLevel;
         LevelText.text = "Lvl" + CharStats.instance.playerLevel;
     }

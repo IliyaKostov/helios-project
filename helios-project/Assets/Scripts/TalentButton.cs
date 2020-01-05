@@ -24,12 +24,12 @@ public class TalentButton : MonoBehaviour
 
     public void Press()
     {
-        if (TalentPoints.instance.pointsToSpend > 0)
+        if (CharStats.instance.availableTalentPoints > 0)
         {
             valueAmount += 1;
             amountText.text = "" + valueAmount;
             selectedTalent.SpendTalentPoint();
-            TalentPoints.instance.pointsToSpend--;
+            CharStats.instance.availableTalentPoints--;
         } else
         {
             return;

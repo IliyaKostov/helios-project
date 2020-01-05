@@ -11,7 +11,8 @@ public class CharStats : MonoBehaviour
     public int currentExp;
     public int[] expToNextLevel;
     public int maxLevel = 10;
-    public int baseExp = 1000;
+    public int baseExp = 0;
+    public int availableTalentPoints = 0;
 
     public int currentHP = 100;
     public int maxHP = 100;
@@ -31,6 +32,8 @@ public class CharStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentMP = maxMP;
+        currentHP = maxHP;
 
         instance = this;
 
@@ -38,7 +41,7 @@ public class CharStats : MonoBehaviour
         expToNextLevel[1] = baseExp;
         for (int i = 2; i < expToNextLevel.Length; i++)
         {
-            expToNextLevel[i] = Mathf.FloorToInt( expToNextLevel[i - 1] * 1.05f);
+            expToNextLevel[i] = Mathf.FloorToInt( expToNextLevel[i - 1] * 1.1f);
         }
     }
 
@@ -66,7 +69,7 @@ public class CharStats : MonoBehaviour
             {
                 currentExp -= expToNextLevel[playerLevel];
                 playerLevel++;
-                TalentPoints.instance.pointsToSpend++;
+                availableTalentPoints++;
 
                 // determine to add str, def based on odd or even
                 if (playerLevel % 2 == 0)

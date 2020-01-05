@@ -26,17 +26,17 @@ public class HurtEnemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             currentDamage = damageToGive + theCS.wpnPwr;
 
-            collision.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(currentDamage);
+            other.gameObject.GetComponent<EnemyHealthManager>().HurtEnemy(currentDamage);
 
-            Instantiate(DamageBurst, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            Instantiate(DamageBurst, other.gameObject.transform.position, other.gameObject.transform.rotation);
 
-            var clone = (GameObject) Instantiate(DamageNumbers, collision.gameObject.transform.position, Quaternion.Euler(Vector3.zero));
+            var clone = (GameObject) Instantiate(DamageNumbers, other.gameObject.transform.position, Quaternion.Euler(Vector3.zero));
             clone.GetComponent<FloatingNumbers>().damageNumber = currentDamage;
         }
         

@@ -11,6 +11,10 @@ public class Talent : MonoBehaviour
     public bool isPassive;
     public bool isActive;
 
+    public GameObject activeSpell;
+
+    public GameObject hotBar;
+
     [Header("Talent Details")]
     public int amountToChange;
     public bool affectHP, affectMP, affectStr, affectDef;
@@ -51,6 +55,13 @@ public class Talent : MonoBehaviour
                 CharStats.instance.defence += amountToChange;
             }
         }
+
+        if (isActive)
+        {
+            hotBar.GetComponent<HotKey>().activeSpell = activeSpell;
+            hotBar.GetComponent<HotKey>().spellImage.sprite = activeSpell.GetComponent<Spell>().spellSprite;
+        }
+
     }
 }
 
